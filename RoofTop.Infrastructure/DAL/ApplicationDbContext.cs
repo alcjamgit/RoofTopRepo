@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RoofTop.Core.Domain;
 using RoofTop.Core.DomainServices;
+using RoofTop.Infrastructure.Migrations;
 
 namespace RoofTop.Infrastructure.DAL
 {
@@ -20,6 +21,8 @@ namespace RoofTop.Infrastructure.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Used by AppHarbor to automatically update database
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
