@@ -14,7 +14,7 @@ namespace RoofTop.Web.App_Start
         public static void RegisterMapping()
         {
             Mapper.CreateMap<CreateAdViewModel, RealEstateAd>();
-            //Mapper.CreateMap<RealEstateAd, DetailsAdViewModel>();
+            Mapper.CreateMap<RealEstateAd, DetailsAdViewModel>();
             
         }
     }
