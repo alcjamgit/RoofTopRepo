@@ -8,5 +8,6 @@ namespace RoofTop.Core.ApplicationServices
 {
     public interface IFileService
     {
+        void UploadImages();
     }
 }
