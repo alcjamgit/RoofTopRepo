@@ -9,10 +9,10 @@ namespace RoofTop.Core.DomainServices
 {
     public interface IRealEstateAdService
     {
-        RealEstateAd GetById(Guid id);
+        RealEstateAd GetById(int id);
         IQueryable<RealEstateAd> GetAll();
         int Add(RealEstateAd ad);
-        bool Delete(Guid id);
+        bool Delete(int id);
         bool Attach(RealEstateAd ad);
     }
 }

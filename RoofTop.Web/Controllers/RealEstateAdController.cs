@@ -42,7 +42,6 @@ namespace RoofTop.Web.Controllers
             if (ModelState.IsValid)
             {
                 RealEstateAd realtyAd = Mapper.Map<CreateAdViewModel, RealEstateAd>(ad);
-                realtyAd.Id = Guid.NewGuid();
                 realtyAd.CreatedBy = User.Identity.GetUserName();
                 _adService.Add(realtyAd);
             }

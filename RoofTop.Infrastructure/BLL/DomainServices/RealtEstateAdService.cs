@@ -15,7 +15,7 @@ namespace RoofTop.Infrastructure.BLL
         {
             _db = db;
         }
-        public RealEstateAd GetById(Guid id)
+        public RealEstateAd GetById(int id)
         {
             return _db.RealEstateAds.Where(r => r.Id == id).FirstOrDefault();
         }
@@ -29,9 +29,6 @@ namespace RoofTop.Infrastructure.BLL
         public int Add(RealEstateAd ad)
         {
             //just a mockup
-            var id = Guid.NewGuid();
-
-            ad.Id = id;
             ad.Created = DateTime.Now;
             ad.Modified = DateTime.Now;
             ad.City_Id = 1;
@@ -41,7 +38,7 @@ namespace RoofTop.Infrastructure.BLL
             
         }
 
-        public bool Delete(Guid id)
+        public bool Delete(int id)
         {
  	        throw new NotImplementedException();
         }

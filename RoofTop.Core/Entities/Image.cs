@@ -10,11 +10,12 @@ namespace RoofTop.Core.Entities
 {
     public class Image
     {
-        public Guid Id { get; set; }
-        public Guid FileName { get; set; }
+        public int Id { get; set; }
+        [StringLength(128)]
+        public string FileName { get; set; }
         [StringLength(128)]
         public string Caption { get; set; }
-        public Guid RealEstateAd_Id { get; set; }
+        public int RealEstateAd_Id { get; set; }
 
         [ForeignKey("RealEstateAd_Id")]
         public virtual RealEstateAd RealEstateAd { get; set; }
