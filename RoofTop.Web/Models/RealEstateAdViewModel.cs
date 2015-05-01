@@ -10,9 +10,11 @@ namespace RoofTop.Web.Models
     public class CreateAdViewModel
     {
         public string Title { get; set; }
+        public decimal Price { get; set; }
         public virtual int City_Id { get; set; }
         public int RoomCount { get; set; }
         public int BathCount { get; set; }
+
         [HiddenInput]
         public DateTime Created { get { return DateTime.Now; } }
         [HiddenInput]
@@ -20,6 +22,12 @@ namespace RoofTop.Web.Models
         //This will serve as the dropdown (but wont be persisted)
         public IEnumerable<SelectListItem> Cities { get; set; }
     }
+    public class DisplayAdViewModel
+    {
+        public string Title { get; set; }
+        public virtual int Address { get; set; }
+    }
+
     public class DetailsAdViewModel
     {
         public string Title { get; set; }

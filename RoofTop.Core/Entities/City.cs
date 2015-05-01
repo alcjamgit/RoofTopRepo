@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoofTop.Core.Domain
+namespace RoofTop.Core.Entities
 {
     public class City
     {

@@ -14,7 +14,7 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
         {
             _db = db;
         }
-        public IQueryable<Core.Domain.City> GetAll()
+        public IQueryable<Core.Entities.City> GetAll()
         {
             return _db.Cities.AsQueryable();
         }

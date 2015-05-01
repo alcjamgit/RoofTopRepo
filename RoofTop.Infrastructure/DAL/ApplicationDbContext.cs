@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using RoofTop.Core.Domain;
+using RoofTop.Core.Entities;
 using RoofTop.Core.DomainServices;
 using RoofTop.Infrastructure.Migrations;
 
@@ -17,6 +17,7 @@ namespace RoofTop.Infrastructure.DAL
         public static ApplicationDbContext Create() { return new ApplicationDbContext(); }
         
         public IDbSet<RealEstateAd> RealEstateAds { get; set; }
+        public IDbSet<Image> Images { get; set; }
         public IDbSet<City> Cities { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

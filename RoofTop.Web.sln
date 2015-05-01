@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoofTop.Core", "RoofTop.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoofTop.Infrastructure", "RoofTop.Infrastructure\RoofTop.Infrastructure.csproj", "{DE9222FC-FD9F-47D3-96B8-21B6F7AAE22D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoofTop.Test", "RoofTop.Test\RoofTop.Test.csproj", "{69AC7EFD-60D0-46E9-A879-2571920E9E42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DE9222FC-FD9F-47D3-96B8-21B6F7AAE22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE9222FC-FD9F-47D3-96B8-21B6F7AAE22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9222FC-FD9F-47D3-96B8-21B6F7AAE22D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69AC7EFD-60D0-46E9-A879-2571920E9E42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69AC7EFD-60D0-46E9-A879-2571920E9E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69AC7EFD-60D0-46E9-A879-2571920E9E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69AC7EFD-60D0-46E9-A879-2571920E9E42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

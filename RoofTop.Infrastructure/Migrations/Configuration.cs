@@ -7,7 +7,7 @@ namespace RoofTop.Infrastructure.Migrations
     using System.Linq;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using RoofTop.Core.Domain;
+    using RoofTop.Core.Entities;
     using RoofTop.Infrastructure.DAL;
 
     internal sealed class Configuration : DbMigrationsConfiguration<RoofTop.Infrastructure.DAL.ApplicationDbContext>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using RoofTop.Core.Domain;
+using RoofTop.Core.Entities;
 using RoofTop.Web.Models;
 
 namespace RoofTop.Web.App_Start

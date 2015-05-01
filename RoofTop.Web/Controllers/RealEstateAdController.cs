@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using RoofTop.Core.Domain;
+using RoofTop.Core.Entities;
 using RoofTop.Core.DomainServices;
 using RoofTop.Web.Models;
 using AutoMapper;
