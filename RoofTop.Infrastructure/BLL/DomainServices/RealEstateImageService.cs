@@ -26,14 +26,8 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
             return _db.Images.AsQueryable();
         }
 
-        /// <summary>
-        /// Save image info to the database
-        /// </summary>
-        /// <param name="img"></param>
-        /// <returns></returns>
         public int Add(Image img)
         {
-            //Save image
             _db.Images.Add(img);
             return _db.SaveChanges();
             
@@ -44,11 +38,9 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
  	        throw new NotImplementedException();
         }
 
-        public bool Attach(RealEstateAd ad)
+        public bool Attach(Image ad)
         {
- 	        throw new NotImplementedException();
+            throw new NotImplementedException();
         }
-
-
     }
 }

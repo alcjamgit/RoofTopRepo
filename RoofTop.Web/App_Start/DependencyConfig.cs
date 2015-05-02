@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Practices.Unity;
+using RoofTop.Core.ApplicationServices;
 using RoofTop.Core.DomainServices;
 using RoofTop.Infrastructure.BLL;
+using RoofTop.Infrastructure.BLL.ApplicationServices;
 using RoofTop.Infrastructure.BLL.DomainServices;
 using RoofTop.Infrastructure.DAL;
 using RoofTop.Web.Controllers;
@@ -22,6 +24,7 @@ namespace RoofTop.Web
             _container.RegisterType<IRealEstateAdService, RealtEstateAdService>();
             _container.RegisterType<ICityService, CityService>();
             _container.RegisterType<IRealEstateImageService, RealEstateImageService>();
+            _container.RegisterType<IFileService, UserFileService>();
             _container.RegisterInstance<HttpServerUtilityBase>( new HttpServerUtilityWrapper(HttpContext.Current.Server) );
             _container.RegisterType<IApplicationDbContext, ApplicationDbContext>();
 

@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace RoofTop.Core.DomainServices
 {
-    interface IBaseDomainService<TEntity>
+    /// <summary>
+    /// Base repository for Domain Services
+    /// </summary>
+    /// <typeparam name="TEntity">Entity</typeparam>
+    /// <typeparam name="TKey">Type of TEntity's Primary Key</typeparam>
+    public interface IBaseDomainService<TEntity, TKey>
     {
-        int Add(TEntity entity);
-        TEntity Attach(TEntity entity);
-        TEntity Create();
-        //TDerivedEntity Create<TDerivedEntity>() where TDerivedEntity : class, TEntity;
-        //TEntity Find(params object[] keyValues);
-        TEntity Remove(TEntity entity);
+        TEntity GetById(TKey id);
+        IQueryable<TEntity> GetAll();
+        int Add(TEntity ad);
+        bool Delete(TKey id);
+        bool Attach(TEntity ad);
     }
 }

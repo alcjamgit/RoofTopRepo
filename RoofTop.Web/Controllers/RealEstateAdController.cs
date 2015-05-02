@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 using RoofTop.Core.Entities;
 using RoofTop.Core.DomainServices;
+using RoofTop.Core.ApplicationServices;
+using RoofTop.Infrastructure.BLL.ApplicationServices;
 using RoofTop.Web.Models;
+
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNet.Identity;
-using RoofTop.Infrastructure.BLL.ApplicationServices;
+using System.IO;
+
 
 
 namespace RoofTop.Web.Controllers
@@ -20,20 +25,22 @@ namespace RoofTop.Web.Controllers
         private readonly IRealEstateAdService _adService;
         private readonly ICityService _cityService;
         private readonly IRealEstateImageService _imgService;
+        private readonly IFileService _fileService;
         private readonly HttpServerUtilityBase _server;
 
         public RealEstateAdController(
             IRealEstateAdService adService, 
             ICityService cityService,
             IRealEstateImageService imgService,
+            IFileService fileService,
             HttpServerUtilityBase server)
         {
             _adService = adService;
             _cityService = cityService;
             _imgService = imgService;
+            _fileService = fileService;
             _server = server;
         }
-
 
 
         public ActionResult Index()
@@ -61,11 +68,8 @@ namespace RoofTop.Web.Controllers
 
                 if (ad.PostedImage != null)
                 {
-                    var fileService = new UserFileService(ad.PostedImage, _server, userId);
-                    var fileName = fileService.UploadImage();
-                    //var fileName = fileService.UploadImage(ad.PostedImage.InputStream, 
-                    //    ad.PostedImage.FileName, 
-                    //    ad.PostedImage.ContentLength );
+                    var userDir = _server.MapPath( string.Format("~/Content/UserFiles/{0}", userId) );
+                    var fileName = _fileService.UploadFile(ad.PostedImage.InputStream, userDir, ad.PostedImage.FileName, ad.PostedImage.ContentLength);
                     var img = new Image { RealEstateAd_Id = realtyAd.Id};
                     _imgService.Add(img);
                 }

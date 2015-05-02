@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RoofTop.Core.DomainServices;
+using RoofTop.Core.Entities;
 
 namespace RoofTop.Infrastructure.BLL.DomainServices
 {
@@ -14,9 +15,29 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
         {
             _db = db;
         }
-        public IQueryable<Core.Entities.City> GetAll()
+        public IQueryable<City> GetAll()
         {
             return _db.Cities.AsQueryable();
+        }
+
+        public City GetById(int id)
+        {
+            return _db.Cities.Where(c => c.Id == id).FirstOrDefault();
+        }
+
+        public int Add(City ad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Attach(City ad)
+        {
+            throw new NotImplementedException();
         }
     }
 }

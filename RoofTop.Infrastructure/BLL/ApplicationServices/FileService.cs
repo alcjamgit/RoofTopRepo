@@ -5,61 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using RoofTop.Core.ApplicationServices;
 
 
 namespace RoofTop.Infrastructure.BLL.ApplicationServices
 {
-    public class UserFileService
+    public class UserFileService: IFileService
     {
-        private readonly HttpPostedFileBase _httpPostedFileBase;
-        private readonly HttpServerUtilityBase _server;
-        private readonly string _userId;
-
-        public UserFileService(HttpPostedFileBase fileBase, HttpServerUtilityBase server, string userId)
-        {
-            _httpPostedFileBase = fileBase;
-            _server = server;
-            _userId = userId;
-        }
-
+        const int BUFFER_SIZE = 65536; // 65536 = 64 Kilobytes
 
         /// <summary>
-        /// Upload the image to the server in the user's image directory
+        /// Upload a file in the specified folder
         /// </summary>
-        public string UploadImage()
+        /// <param name="inputStream">Stream input</param>
+        /// <param name="destinationPath">Absolute destination path</param>
+        /// <param name="fileName">Filename of input including extension</param>
+        /// <param name="fileSize">File size in bytes</param>
+        /// <returns></returns>
+        public string UploadFile(Stream inputStream, string destinationPath, string fileName, int fileSize)
         {
-            //Save Ad Image to the server and add to database
-            var fileNameNoExten = Guid.NewGuid().ToString();
-            var fileExt = Path.GetExtension(_httpPostedFileBase.FileName);
-            var relativePath = string.Format( "~/Content/UserFiles/{0}", _userId );
-            var absPath1 = _server.MapPath(relativePath);
-            CreateUserDirectory(absPath1);
-            var absolutePath = Path.Combine( _server.MapPath(relativePath) , fileNameNoExten + fileExt );
-            _httpPostedFileBase.SaveAs(absolutePath);
-            
-            return fileNameNoExten + fileExt;
-        }
-
-        /// <summary>
-        /// Upload the image to the server in the user's image directory
-        /// </summary>
-        public string UploadImage(Stream reader, string fileName, int fileSize)
-        {
-            //TODO: Write an uploader without dependency on HttpPostedFileBase
-            //http://stackoverflow.com/questions/18539000/how-to-save-to-disk-httppostedfilebase-object-as-a-file
-
-
-            //Save Ad Image to the server and add to database
-            var fileNameNoExten = Guid.NewGuid().ToString();
+            //Build absolute file path
+            var outputFileName = Guid.NewGuid().ToString();
             var fileExt = Path.GetExtension(fileName);
-            var relativePath = string.Format("~/Content/UserFiles/{0}", _userId);
-            var absPath1 = _server.MapPath(relativePath);
-            CreateUserDirectory(absPath1);
-            var absolutePath = Path.Combine(_server.MapPath(relativePath), fileNameNoExten + fileExt);
+            CreateUserDirectory(destinationPath);
+            var absolutePath = Path.Combine(destinationPath, outputFileName + fileExt);
 
-            const int BUFFER_SIZE = 65536; // 65536 = 64 Kilobytes
             byte[] buffer = new byte[BUFFER_SIZE];
-            using (FileStream fs = System.IO.File.Create(absolutePath)) 
+
+            //Read the stream from the input file and copies it to a new ouput file
+            using (FileStream fileStream = System.IO.File.Create(absolutePath)) 
             {
                 int read = -1;
                 int pos = 0;
@@ -74,8 +48,8 @@ namespace RoofTop.Infrastructure.BLL.ApplicationServices
                     {
                         len = BUFFER_SIZE;
                     }
-                    read = reader.Read(buffer, 0, len);
-                    fs.Write(buffer, 0, len);
+                    read = inputStream.Read(buffer, 0, len);
+                    fileStream.Write(buffer, 0, len);
                     pos += read;
                 } while (read > 0);
             }

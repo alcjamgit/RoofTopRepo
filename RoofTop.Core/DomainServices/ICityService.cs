@@ -7,8 +7,8 @@ using RoofTop.Core.Entities;
 
 namespace RoofTop.Core.DomainServices
 {
-    public interface ICityService
+    public interface ICityService: IBaseDomainService<City, int>
     {
-        IQueryable<City> GetAll();
+        //IQueryable<City> GetAll();
     }
 }
