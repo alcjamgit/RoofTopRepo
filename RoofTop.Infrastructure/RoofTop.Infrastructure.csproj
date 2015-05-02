@@ -52,7 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\ApplicationServices\FileService.cs" />
+    <Compile Include="BLL\ApplicationServices\CurrentUserService.cs" />
+    <Compile Include="BLL\ApplicationServices\UserFileService.cs" />
     <Compile Include="BLL\DomainServices\CityService.cs" />
     <Compile Include="BLL\DomainServices\RealEstateImageService.cs" />
     <Compile Include="DAL\ApplicationUser.cs" />

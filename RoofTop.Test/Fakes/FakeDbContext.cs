@@ -15,6 +15,11 @@ namespace RoofTop.Test.Fakes
         public FakeDbContext()
         {
             this.RealEstateAds = new InMemoryDbSet<RealEstateAd>();
+            this.Cities = new InMemoryDbSet<City> { 
+                new City { Id = 1, Name = "Makati", Region = "NCR" },
+                new City { Id = 2, Name = "Taguig", Region = "NCR" },
+            };
+            this.Images = new InMemoryDbSet<Image>();
         }
         public IDbSet<RealEstateAd> RealEstateAds { get; set; }
         public IDbSet<City> Cities { get; set; }

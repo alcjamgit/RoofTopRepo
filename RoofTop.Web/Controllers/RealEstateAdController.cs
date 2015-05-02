@@ -26,6 +26,7 @@ namespace RoofTop.Web.Controllers
         private readonly ICityService _cityService;
         private readonly IRealEstateImageService _imgService;
         private readonly IFileService _fileService;
+        private readonly ICurrentUserService _curUserService;
         private readonly HttpServerUtilityBase _server;
 
         public RealEstateAdController(
@@ -33,12 +34,14 @@ namespace RoofTop.Web.Controllers
             ICityService cityService,
             IRealEstateImageService imgService,
             IFileService fileService,
+            ICurrentUserService curUserService,
             HttpServerUtilityBase server)
         {
             _adService = adService;
             _cityService = cityService;
             _imgService = imgService;
             _fileService = fileService;
+            _curUserService = curUserService;
             _server = server;
         }
 
@@ -58,12 +61,22 @@ namespace RoofTop.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreateAdViewModel ad)
         {
-            var userId = User.Identity.GetUserId();
+            var userId = _curUserService.UserID;
             
             if (ModelState.IsValid)
             {
-                RealEstateAd realtyAd = Mapper.Map<CreateAdViewModel, RealEstateAd>(ad);
-                realtyAd.CreatedBy = userId;
+                //RealEstateAd realtyAd = Mapper.Map<CreateAdViewModel, RealEstateAd>(ad);
+                var realtyAd = new RealEstateAd 
+                {
+                    Title = ad.Title,
+                    Price = ad.Price,
+                    RoomCount = ad.RoomCount,
+                    BathCount = ad.BathCount,
+                    CreatedBy = userId,
+                    HtmlContent = ad.HtmlContent
+                };
+                
+                //realtyAd.CreatedBy = userId;
                 _adService.Add(realtyAd);
 
                 if (ad.PostedImage != null)
@@ -75,7 +88,7 @@ namespace RoofTop.Web.Controllers
                 }
 
             }
-
+            //return View();
             return RedirectToAction("");
         }
 

@@ -22,7 +22,7 @@ namespace RoofTop.Infrastructure.BLL.ApplicationServices
         /// <param name="fileName">Filename of input including extension</param>
         /// <param name="fileSize">File size in bytes</param>
         /// <returns></returns>
-        public string UploadFile(Stream inputStream, string destinationPath, string fileName, int fileSize)
+        public virtual string UploadFile(Stream inputStream, string destinationPath, string fileName, int fileSize)
         {
             //Build absolute file path
             var outputFileName = Guid.NewGuid().ToString();

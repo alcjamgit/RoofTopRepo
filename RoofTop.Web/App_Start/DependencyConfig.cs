@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -21,11 +22,14 @@ namespace RoofTop.Web
         public static IUnityContainer RegisterTypes()
         { 
             _container = new UnityContainer();
-            _container.RegisterType<IRealEstateAdService, RealtEstateAdService>();
+            _container.RegisterType<IRealEstateAdService, RealEstateAdService>();
             _container.RegisterType<ICityService, CityService>();
             _container.RegisterType<IRealEstateImageService, RealEstateImageService>();
             _container.RegisterType<IFileService, UserFileService>();
+            _container.RegisterType<ICurrentUserService, CurrentUserService>();
+
             _container.RegisterInstance<HttpServerUtilityBase>( new HttpServerUtilityWrapper(HttpContext.Current.Server) );
+            _container.RegisterType<IIdentity>(new InjectionFactory(u => HttpContext.Current.User.Identity));
             _container.RegisterType<IApplicationDbContext, ApplicationDbContext>();
 
             

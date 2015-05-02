@@ -9,11 +9,11 @@ using RoofTop.Infrastructure.BLL.ApplicationServices;
 
 namespace RoofTop.Infrastructure.BLL.DomainServices
 {
-    public class RealtEstateAdService : IRealEstateAdService
+    public class RealEstateAdService : IRealEstateAdService
     {
         private IApplicationDbContext _db;
         public UserFileService _fileService;
-        public RealtEstateAdService(IApplicationDbContext db)
+        public RealEstateAdService(IApplicationDbContext db)
         {
             _db = db;
         }
