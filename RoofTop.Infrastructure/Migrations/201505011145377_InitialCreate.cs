@@ -18,14 +18,31 @@ namespace RoofTop.Infrastructure.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Images",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FileName = c.String(maxLength: 128),
+                        Caption = c.String(maxLength: 128),
+                        RealEstateAd_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.RealEstateAds", t => t.RealEstateAd_Id)
+                .Index(t => t.RealEstateAd_Id);
+            
+            CreateTable(
                 "dbo.RealEstateAds",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
-                        Title = c.String(),
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(maxLength: 128),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        City_Id = c.Int(nullable: false),
+                        RoomCount = c.Int(),
+                        BathCount = c.Int(),
                         CreatedBy = c.String(),
                         Created = c.DateTime(nullable: false),
-                        City_Id = c.Int(nullable: false),
+                        Modified = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Cities", t => t.City_Id)
@@ -107,6 +124,7 @@ namespace RoofTop.Infrastructure.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Images", "RealEstateAd_Id", "dbo.RealEstateAds");
             DropForeignKey("dbo.RealEstateAds", "City_Id", "dbo.Cities");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
@@ -115,12 +133,14 @@ namespace RoofTop.Infrastructure.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.RealEstateAds", new[] { "City_Id" });
+            DropIndex("dbo.Images", new[] { "RealEstateAd_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.RealEstateAds");
+            DropTable("dbo.Images");
             DropTable("dbo.Cities");
         }
     }

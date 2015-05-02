@@ -9,6 +9,8 @@ using RoofTop.Web.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNet.Identity;
+using RoofTop.Infrastructure.BLL.ApplicationServices;
+
 
 namespace RoofTop.Web.Controllers
 {
@@ -17,12 +19,22 @@ namespace RoofTop.Web.Controllers
     {
         private readonly IRealEstateAdService _adService;
         private readonly ICityService _cityService;
+        private readonly IRealEstateImageService _imgService;
+        private readonly HttpServerUtilityBase _server;
 
-        public RealEstateAdController(IRealEstateAdService adService, ICityService cityService)
+        public RealEstateAdController(
+            IRealEstateAdService adService, 
+            ICityService cityService,
+            IRealEstateImageService imgService,
+            HttpServerUtilityBase server)
         {
             _adService = adService;
             _cityService = cityService;
+            _imgService = imgService;
+            _server = server;
         }
+
+
 
         public ActionResult Index()
         {
@@ -39,12 +51,27 @@ namespace RoofTop.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreateAdViewModel ad)
         {
+            var userId = User.Identity.GetUserId();
+            
             if (ModelState.IsValid)
             {
                 RealEstateAd realtyAd = Mapper.Map<CreateAdViewModel, RealEstateAd>(ad);
-                realtyAd.CreatedBy = User.Identity.GetUserName();
+                realtyAd.CreatedBy = userId;
                 _adService.Add(realtyAd);
+
+                if (ad.PostedImage != null)
+                {
+                    var fileService = new UserFileService(ad.PostedImage, _server, userId);
+                    var fileName = fileService.UploadImage();
+                    //var fileName = fileService.UploadImage(ad.PostedImage.InputStream, 
+                    //    ad.PostedImage.FileName, 
+                    //    ad.PostedImage.ContentLength );
+                    var img = new Image { RealEstateAd_Id = realtyAd.Id};
+                    _imgService.Add(img);
+                }
+
             }
+
             return RedirectToAction("");
         }
 

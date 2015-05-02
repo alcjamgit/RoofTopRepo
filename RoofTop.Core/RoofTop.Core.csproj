@@ -52,17 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationServices\IFileService.cs" />
     <Compile Include="DomainServices\IApplicationDbContext.cs" />
     <Compile Include="DomainServices\IBaseDomainService.cs" />
     <Compile Include="DomainServices\ICityService.cs" />
     <Compile Include="DomainServices\IRealEstateAdService.cs" />
+    <Compile Include="DomainServices\IRealEstateImageService.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\RealEstateAd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ApplicationServices\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

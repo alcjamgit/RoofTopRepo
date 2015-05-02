@@ -7,13 +7,13 @@ namespace RoofTop.Infrastructure.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class Update4 : IMigrationMetadata
+    public sealed partial class Update002 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Update002));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505011140192_Update4"; }
+            get { return "201505012151286_update"; }
         }
         
         string IMigrationMetadata.Source

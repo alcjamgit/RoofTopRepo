@@ -8,7 +8,7 @@ namespace RoofTop.Core.DomainServices
 {
     interface IBaseDomainService<TEntity>
     {
-        TEntity Add(TEntity entity);
+        int Add(TEntity entity);
         TEntity Attach(TEntity entity);
         TEntity Create();
         //TDerivedEntity Create<TDerivedEntity>() where TDerivedEntity : class, TEntity;

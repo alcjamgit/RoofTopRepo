@@ -13,6 +13,7 @@ namespace RoofTop.Core.DomainServices
     {
         IDbSet<RealEstateAd> RealEstateAds { get; set; }
         IDbSet<City> Cities { get; set; }
+        IDbSet<Image> Images { get; set; }
         int SaveChanges();
     }
 }

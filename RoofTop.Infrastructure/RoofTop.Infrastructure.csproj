@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,40 +53,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ApplicationServices\FileService.cs" />
     <Compile Include="BLL\DomainServices\CityService.cs" />
+    <Compile Include="BLL\DomainServices\RealEstateImageService.cs" />
     <Compile Include="DAL\ApplicationUser.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="BLL\DomainServices\RealtEstateAdService.cs" />
-    <Compile Include="Migrations\201504260346027_InitialCreate.cs" />
-    <Compile Include="Migrations\201504260346027_InitialCreate.Designer.cs">
-      <DependentUpon>201504260346027_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201505011145377_InitialCreate.cs" />
+    <Compile Include="Migrations\201505011145377_InitialCreate.Designer.cs">
+      <DependentUpon>201505011145377_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504260406436_Update.cs" />
-    <Compile Include="Migrations\201504260406436_Update.Designer.cs">
-      <DependentUpon>201504260406436_Update.cs</DependentUpon>
+    <Compile Include="Migrations\201505011303532_Update.cs" />
+    <Compile Include="Migrations\201505011303532_Update.Designer.cs">
+      <DependentUpon>201505011303532_Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504260712046_Update1.cs" />
-    <Compile Include="Migrations\201504260712046_Update1.Designer.cs">
-      <DependentUpon>201504260712046_Update1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504302224091_Update2.cs" />
-    <Compile Include="Migrations\201504302224091_Update2.Designer.cs">
-      <DependentUpon>201504302224091_Update2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504302229082_Update3.cs" />
-    <Compile Include="Migrations\201504302229082_Update3.Designer.cs">
-      <DependentUpon>201504302229082_Update3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505011140192_Update4.cs" />
-    <Compile Include="Migrations\201505011140192_Update4.Designer.cs">
-      <DependentUpon>201505011140192_Update4.cs</DependentUpon>
+    <Compile Include="Migrations\201505012151286_update.cs" />
+    <Compile Include="Migrations\201505012151286_update.Designer.cs">
+      <DependentUpon>201505012151286_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\ApplicationServices\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -97,23 +86,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504260346027_InitialCreate.resx">
-      <DependentUpon>201504260346027_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505011145377_InitialCreate.resx">
+      <DependentUpon>201505011145377_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504260406436_Update.resx">
-      <DependentUpon>201504260406436_Update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505011303532_Update.resx">
+      <DependentUpon>201505011303532_Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504260712046_Update1.resx">
-      <DependentUpon>201504260712046_Update1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504302224091_Update2.resx">
-      <DependentUpon>201504302224091_Update2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504302229082_Update3.resx">
-      <DependentUpon>201504302229082_Update3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505011140192_Update4.resx">
-      <DependentUpon>201505011140192_Update4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505012151286_update.resx">
+      <DependentUpon>201505012151286_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

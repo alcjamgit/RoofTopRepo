@@ -3,16 +3,16 @@ namespace RoofTop.Infrastructure.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Update : DbMigration
+    public partial class Update001 : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.RealEstateAds", "Modified", c => c.DateTime(nullable: false));
+            AddColumn("dbo.RealEstateAds", "HtmlContent", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.RealEstateAds", "Modified");
+            DropColumn("dbo.RealEstateAds", "HtmlContent");
         }
     }
 }

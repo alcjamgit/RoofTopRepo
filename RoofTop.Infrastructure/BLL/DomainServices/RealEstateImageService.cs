@@ -5,36 +5,36 @@ using System.Text;
 using System.Threading.Tasks;
 using RoofTop.Core.Entities;
 using RoofTop.Core.DomainServices;
-using RoofTop.Infrastructure.BLL.ApplicationServices;
 
 namespace RoofTop.Infrastructure.BLL.DomainServices
 {
-    public class RealtEstateAdService : IRealEstateAdService
+    public class RealEstateImageService : IRealEstateImageService
     {
         private IApplicationDbContext _db;
-        public UserFileService _fileService;
-        public RealtEstateAdService(IApplicationDbContext db)
+        public RealEstateImageService(IApplicationDbContext db)
         {
             _db = db;
         }
-        public RealEstateAd GetById(int id)
+        public Image GetById(int id)
         {
-            return _db.RealEstateAds.Where(r => r.Id == id).FirstOrDefault();
+            return _db.Images.Where(r => r.Id == id).FirstOrDefault();
         }
 
 
-        public IQueryable<RealEstateAd> GetAll()
+        public IQueryable<Image> GetAll()
         {
-            return _db.RealEstateAds.AsQueryable();
+            return _db.Images.AsQueryable();
         }
 
-        public int Add(RealEstateAd ad)
+        /// <summary>
+        /// Save image info to the database
+        /// </summary>
+        /// <param name="img"></param>
+        /// <returns></returns>
+        public int Add(Image img)
         {
-            //Save ad
-            ad.Created = DateTime.Now;
-            ad.Modified = DateTime.Now;
-            _db.RealEstateAds.Add(ad);
-
+            //Save image
+            _db.Images.Add(img);
             return _db.SaveChanges();
             
         }

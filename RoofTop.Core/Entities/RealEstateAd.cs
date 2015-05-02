@@ -11,13 +11,15 @@ namespace RoofTop.Core.Entities
     public class RealEstateAd
     {
         public int Id { get; set; }
-        [StringLength(128)]
+        [Required, StringLength(128)]
         public string Title { get; set; }
         public decimal Price { get; set; }
+        public string HtmlContent { get; set; }
+
         public int City_Id { get; set; }
         public int? RoomCount { get; set; }
         public int? BathCount { get; set; }
-
+        [StringLength(128)]
         public string CreatedBy { get; set; }
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
