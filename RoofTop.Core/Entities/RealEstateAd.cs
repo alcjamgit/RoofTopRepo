@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoofTop.Core.DomainServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RoofTop.Core.Entities
 {
-    public class RealEstateAd
+    public class RealEstateAd: IAuditable
     {
         public int Id { get; set; }
         [Required, StringLength(128)]
@@ -19,10 +20,15 @@ namespace RoofTop.Core.Entities
         public int City_Id { get; set; }
         public int? RoomCount { get; set; }
         public int? BathCount { get; set; }
+
+        #region IAuditable Implementation
         [StringLength(128)]
         public string CreatedBy { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
+        public DateTime CreateDate { get; set; }
+        [StringLength(128)]
+        public string ModifiedBy { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        #endregion IAuditable Implementation
 
         #region Foreign Keys
 

@@ -31,8 +31,8 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
         public int Add(RealEstateAd ad)
         {
             //Save ad
-            ad.Created = DateTime.Now;
-            ad.Modified = DateTime.Now;
+            ad.CreateDate = DateTime.Now;
+            ad.ModifiedDate = DateTime.Now;
             _db.RealEstateAds.Add(ad);
 
             return _db.SaveChanges();

@@ -59,6 +59,7 @@
     <Compile Include="ApplicationServices\ICurrentUserService.cs" />
     <Compile Include="ApplicationServices\IFileService.cs" />
     <Compile Include="DomainServices\IApplicationDbContext.cs" />
+    <Compile Include="DomainServices\IAuditable.cs" />
     <Compile Include="DomainServices\IBaseDomainService.cs" />
     <Compile Include="DomainServices\ICityService.cs" />
     <Compile Include="DomainServices\IRealEstateAdService.cs" />
