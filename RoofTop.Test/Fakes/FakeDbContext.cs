@@ -28,7 +28,7 @@ namespace RoofTop.Test.Fakes
         {
             // Pretend that each entity gets a database id when we hit save.
             int changes = 0;
-            changes += DbSetHelper.IncrementPrimaryKey<RealEstateAd>(x => x.Id, this.RealEstateAds);
+            //changes += DbSetHelper.IncrementPrimaryKey<RealEstateAd>(x => x.Id, this.RealEstateAds);
 
             return changes;
         }

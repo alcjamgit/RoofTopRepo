@@ -49,21 +49,13 @@ namespace RoofTop.Infrastructure.DAL
                 if (auditableEntity.State == EntityState.Added ||
                     auditableEntity.State == EntityState.Modified)
                 {
-                    // implementation may change based on the useage scenario, this
-                    // sample is for forma authentication.
-                    string curUserId = _curUserService.UserID;
-
-                    // modify updated date and updated by column for 
-                    // adds of updates.
                     auditableEntity.Entity.ModifiedDate = DateTime.Now;
-                    auditableEntity.Entity.ModifiedBy = curUserId;
+                    auditableEntity.Entity.ModifiedBy = _curUserService.UserID;
 
-                    // pupulate created date and created by columns for
-                    // newly added record.
                     if (auditableEntity.State == EntityState.Added)
                     {
                         auditableEntity.Entity.CreateDate = DateTime.Now;
-                        auditableEntity.Entity.CreatedBy = curUserId;
+                        auditableEntity.Entity.CreatedBy = _curUserService.UserID;
                     }
                     else
                     {
@@ -74,6 +66,7 @@ namespace RoofTop.Infrastructure.DAL
                     }
                 }
             }
+
             return base.SaveChanges();
 
         }

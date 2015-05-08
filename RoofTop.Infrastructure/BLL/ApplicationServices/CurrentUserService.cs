@@ -23,9 +23,11 @@ namespace RoofTop.Infrastructure.BLL.ApplicationServices
             UserName = identity.Name;
             UserID = identity.GetUserId();
         }
+        //for mocking
+        public CurrentUserService(){ }
 
         public string UserName { get; set; }
         public bool IsAuthenticated { get; set; }
-        public string UserID { get; set; }
+        public virtual string UserID { get; set; }
     }
 }

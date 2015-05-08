@@ -12,12 +12,12 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
     public class RealEstateAdService : IRealEstateAdService
     {
         private IApplicationDbContext _db;
-        public UserFileService _fileService;
+        
         public RealEstateAdService(IApplicationDbContext db)
         {
             _db = db;
         }
-        public RealEstateAd GetById(int id)
+        public RealEstateAd GetById(Guid id)
         {
             return _db.RealEstateAds.Where(r => r.Id == id).FirstOrDefault();
         }
@@ -28,18 +28,14 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
             return _db.RealEstateAds.AsQueryable();
         }
 
-        public int Add(RealEstateAd ad)
+        public virtual int Add(RealEstateAd ad)
         {
-            //Save ad
-            ad.CreateDate = DateTime.Now;
-            ad.ModifiedDate = DateTime.Now;
             _db.RealEstateAds.Add(ad);
-
             return _db.SaveChanges();
             
         }
 
-        public bool Delete(int id)
+        public bool Delete(Guid id)
         {
  	        throw new NotImplementedException();
         }
@@ -48,7 +44,6 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
         {
  	        throw new NotImplementedException();
         }
-
 
     }
 }

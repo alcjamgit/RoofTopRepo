@@ -12,12 +12,12 @@ namespace RoofTop.Web.Models
 {
     public class CreateAdViewModel
     {
-        [Required, StringLength(128)]
+        [Required()] [StringLength(1)]
         public string Title { get; set; }
         public decimal Price { get; set; }
-        [DisplayName("Description")]
+        [DisplayName("Description"), AllowHtml]
         public string HtmlContent { get; set; }
-        [DisplayName("City")]
+        [DisplayName("City"), Required]
         public virtual int City_Id { get; set; }
         [Range(0, int.MaxValue, ErrorMessage  ="Must be greater than zero")]
         public int? RoomCount { get; set; }

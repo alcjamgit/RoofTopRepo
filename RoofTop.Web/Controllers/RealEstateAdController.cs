@@ -16,7 +16,6 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 
 
-
 namespace RoofTop.Web.Controllers
 {
     [Authorize]
@@ -60,9 +59,7 @@ namespace RoofTop.Web.Controllers
 
         [HttpPost]
         public ActionResult Create(CreateAdViewModel ad)
-        {
-            var userId = _curUserService.UserID;
-            
+        {   
             if (ModelState.IsValid)
             {
                 //RealEstateAd realtyAd = Mapper.Map<CreateAdViewModel, RealEstateAd>(ad);
@@ -70,26 +67,30 @@ namespace RoofTop.Web.Controllers
                 {
                     Title = ad.Title,
                     Price = ad.Price,
+                    City_Id = ad.City_Id,
                     RoomCount = ad.RoomCount,
                     BathCount = ad.BathCount,
-                    CreatedBy = userId,
                     HtmlContent = ad.HtmlContent
                 };
                 
                 //realtyAd.CreatedBy = userId;
-                _adService.Add(realtyAd);
+                 _adService.Add(realtyAd);
 
                 if (ad.PostedImage != null)
                 {
-                    var userDir = _server.MapPath( string.Format("~/Content/UserFiles/{0}", userId) );
+                    var userDir = _server.MapPath( string.Format("~/Content/UserFiles/{0}", _curUserService.UserID) );
                     var fileName = _fileService.UploadFile(ad.PostedImage.InputStream, userDir, ad.PostedImage.FileName, ad.PostedImage.ContentLength);
                     var img = new Image { RealEstateAd_Id = realtyAd.Id};
                     _imgService.Add(img);
                 }
-
+                
             }
-            //return View();
-            return RedirectToAction("");
+            else
+            {
+                return View(ad);
+            }
+            
+            return RedirectToAction("Index");
         }
 
         public ActionResult Details(Guid id)

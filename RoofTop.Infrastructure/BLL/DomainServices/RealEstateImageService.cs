@@ -26,7 +26,7 @@ namespace RoofTop.Infrastructure.BLL.DomainServices
             return _db.Images.AsQueryable();
         }
 
-        public int Add(Image img)
+        public virtual int Add(Image img)
         {
             _db.Images.Add(img);
             return _db.SaveChanges();

@@ -11,7 +11,7 @@ namespace RoofTop.Core.Entities
 {
     public class RealEstateAd: IAuditable
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required, StringLength(128)]
         public string Title { get; set; }
         public decimal Price { get; set; }
