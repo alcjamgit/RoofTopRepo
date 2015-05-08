@@ -27,6 +27,7 @@ namespace RoofTop.Test.Controllers
         {
             
             var fakeDbContext = new FakeDbContext();
+            var x = fakeDbContext.Cities.Where(c => c.Id == 1).Select(c =>c);
             var adService = new RealEstateAdService(fakeDbContext);
             var cityService = new CityService(fakeDbContext);
             var imgService = new RealEstateImageService(fakeDbContext);
