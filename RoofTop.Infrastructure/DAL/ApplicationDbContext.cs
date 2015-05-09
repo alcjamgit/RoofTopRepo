@@ -34,7 +34,7 @@ namespace RoofTop.Infrastructure.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Used by AppHarbor to automatically update database
+            //Used by AppHarbor to automatically update the database
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
