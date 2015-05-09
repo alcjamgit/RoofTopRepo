@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace RoofTop.Core.DomainServices
         IDbSet<RealEstateAd> RealEstateAds { get; set; }
         IDbSet<City> Cities { get; set; }
         IDbSet<Image> Images { get; set; }
+
         int SaveChanges();
+        DbEntityEntry Entry(object entity);
     }
 }

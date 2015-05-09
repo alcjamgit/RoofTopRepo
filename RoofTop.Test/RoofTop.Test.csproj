@@ -85,7 +85,6 @@
     <Compile Include="Controllers\RealEstateAdControllerTest.cs" />
     <Compile Include="DomainServices\RealEstateServiceTest.cs" />
     <Compile Include="Fakes\FakeCurrentUser.cs" />
-    <Compile Include="Fakes\FakeDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

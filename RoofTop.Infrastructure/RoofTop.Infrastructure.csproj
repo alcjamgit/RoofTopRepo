@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -53,28 +59,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\ApplicationServices\CurrentUserService.cs" />
+    <Compile Include="BLL\ApplicationServices\MappingService.cs" />
     <Compile Include="BLL\ApplicationServices\UserFileService.cs" />
     <Compile Include="BLL\DomainServices\CityService.cs" />
     <Compile Include="BLL\DomainServices\RealEstateImageService.cs" />
     <Compile Include="DAL\ApplicationUser.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="BLL\DomainServices\RealtEstateAdService.cs" />
-    <Compile Include="Migrations\201505011145377_InitialCreate.cs" />
-    <Compile Include="Migrations\201505011145377_InitialCreate.Designer.cs">
-      <DependentUpon>201505011145377_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505011303532_Update.cs" />
-    <Compile Include="Migrations\201505011303532_Update.Designer.cs">
-      <DependentUpon>201505011303532_Update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505012151286_update.cs" />
-    <Compile Include="Migrations\201505012151286_update.Designer.cs">
-      <DependentUpon>201505012151286_update.cs</DependentUpon>
+    <Compile Include="Migrations\201505082316068_Initial.cs" />
+    <Compile Include="Migrations\201505082316068_Initial.Designer.cs">
+      <DependentUpon>201505082316068_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -86,14 +84,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505011145377_InitialCreate.resx">
-      <DependentUpon>201505011145377_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505011303532_Update.resx">
-      <DependentUpon>201505011303532_Update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505012151286_update.resx">
-      <DependentUpon>201505012151286_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505082316068_Initial.resx">
+      <DependentUpon>201505082316068_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

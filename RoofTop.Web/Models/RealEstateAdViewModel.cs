@@ -12,7 +12,7 @@ namespace RoofTop.Web.Models
 {
     public class CreateAdViewModel
     {
-        [Required()] [StringLength(1)]
+        [Required()] [StringLength(128)]
         public string Title { get; set; }
         public decimal Price { get; set; }
         [DisplayName("Description"), AllowHtml]
@@ -24,10 +24,6 @@ namespace RoofTop.Web.Models
         [Range(0, int.MaxValue, ErrorMessage = "Must be greater than zero")]
         public int? BathCount { get; set; }
 
-        [HiddenInput]
-        public DateTime Created { get { return DateTime.Now; } }
-        [HiddenInput]
-        public DateTime Modified { get { return DateTime.Now; } }
         //This will serve as the dropdown (but wont be persisted)
         public IEnumerable<SelectListItem> Cities { get; set; }
         public HttpPostedFileBase PostedImage { get; set; }
@@ -41,7 +37,17 @@ namespace RoofTop.Web.Models
     public class DetailsAdViewModel
     {
         public string Title { get; set; }
-        public virtual int CityName { get; set; }
+        public decimal Price { get; set; }
+        [DisplayName("Description"), AllowHtml]
+        public string HtmlContent { get; set; }
+        [DisplayName("Rooms")]
+        public int? RoomCount { get; set; }
+        [DisplayName("Baths")]
+        public int? BathCount { get; set; }
+        [DisplayName("City")]
+        public string CityName { get; set; }
+        public string ImageUrl { get; set; }
+
     }
 
 }

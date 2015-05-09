@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ApplicationServices\ICurrentUserService.cs" />
     <Compile Include="ApplicationServices\IFileService.cs" />
+    <Compile Include="ApplicationServices\IMappingService.cs" />
     <Compile Include="DomainServices\IApplicationDbContext.cs" />
     <Compile Include="DomainServices\IAuditable.cs" />
     <Compile Include="DomainServices\IBaseDomainService.cs" />

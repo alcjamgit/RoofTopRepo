@@ -39,6 +39,7 @@ namespace RoofTop.Infrastructure.DAL
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
+            
         }
 
         //Override method to automagically update CreateDate, CreatedBy, ModifiedDate, ModifiedDate every save
@@ -70,6 +71,5 @@ namespace RoofTop.Infrastructure.DAL
             return base.SaveChanges();
 
         }
-
     }
 }

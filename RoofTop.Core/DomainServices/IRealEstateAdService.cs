@@ -7,12 +7,7 @@ using RoofTop.Core.Entities;
 
 namespace RoofTop.Core.DomainServices
 {
-    public interface IRealEstateAdService: IBaseDomainService<RealEstateAd,Guid>
+    public interface IRealEstateAdService: IBaseDomainService<RealEstateAd>
     {
-        //RealEstateAd GetById(int id);
-        //IQueryable<RealEstateAd> GetAll();
-        //int Add(RealEstateAd ad);
-        //bool Delete(int id);
-        //bool Attach(RealEstateAd ad);
     }
 }

@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace RoofTop.Core.DomainServices
 {
     /// <summary>
     /// Base repository for Domain Services
     /// </summary>
-    /// <typeparam name="TEntity">Entity</typeparam>
+    /// <typeparam name="T">Entity</typeparam>
     /// <typeparam name="TKey">Type of TEntity's Primary Key</typeparam>
-    public interface IBaseDomainService<TEntity, TKey>
+    public interface IBaseDomainService<T> where T: class
     {
-        TEntity GetById(TKey id);
-        IQueryable<TEntity> GetAll();
-        int Add(TEntity ad);
-        bool Delete(TKey id);
-        bool Attach(TEntity ad);
+        IQueryable<T> GetAll();
+        IQueryable<T> Find(Expression<Func<T ,bool>> predicate);
+        T Add(T entity);
+        T Delete(T entity);
+        void Edit(T entity);
+        int Commit();
     }
 }

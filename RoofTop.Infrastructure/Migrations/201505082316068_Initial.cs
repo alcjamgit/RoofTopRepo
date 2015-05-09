@@ -3,7 +3,7 @@ namespace RoofTop.Infrastructure.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -24,7 +24,7 @@ namespace RoofTop.Infrastructure.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FileName = c.String(maxLength: 128),
                         Caption = c.String(maxLength: 128),
-                        RealEstateAd_Id = c.Int(nullable: false),
+                        RealEstateAd_Id = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.RealEstateAds", t => t.RealEstateAd_Id)
@@ -34,15 +34,17 @@ namespace RoofTop.Infrastructure.Migrations
                 "dbo.RealEstateAds",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(maxLength: 128),
+                        Id = c.Guid(nullable: false),
+                        Title = c.String(nullable: false, maxLength: 128),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        HtmlContent = c.String(),
                         City_Id = c.Int(nullable: false),
                         RoomCount = c.Int(),
                         BathCount = c.Int(),
-                        CreatedBy = c.String(),
-                        Created = c.DateTime(nullable: false),
-                        Modified = c.DateTime(nullable: false),
+                        CreatedBy = c.String(maxLength: 128),
+                        CreateDate = c.DateTime(nullable: false),
+                        ModifiedBy = c.String(maxLength: 128),
+                        ModifiedDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Cities", t => t.City_Id)
