@@ -36,6 +36,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK">
+      <HintPath>..\packages\AWSSDK.2.3.36.0\lib\net45\AWSSDK.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -60,6 +63,7 @@
   <ItemGroup>
     <Compile Include="BLL\ApplicationServices\CurrentUserService.cs" />
     <Compile Include="BLL\ApplicationServices\MappingService.cs" />
+    <Compile Include="BLL\ApplicationServices\AmazonS3FileService.cs" />
     <Compile Include="BLL\ApplicationServices\UserFileService.cs" />
     <Compile Include="BLL\DomainServices\CityService.cs" />
     <Compile Include="BLL\DomainServices\RealEstateImageService.cs" />

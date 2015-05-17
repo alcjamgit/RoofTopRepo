@@ -30,16 +30,19 @@
         </div>
     </div>
     <div class="container body-content">
-        <div class="col-md-8">
-            @RenderBody()
+        <div class="row">
+            <div class="col-md-8">
+                @RenderBody()
+            </div>
+            <div class="col-md-4">
+                @RenderSection("sideBar", required: false)
+            </div>
         </div>
-        
         <hr />
-        <footer>
+        <footer class="row">
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </footer> 
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
