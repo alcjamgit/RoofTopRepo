@@ -26,7 +26,8 @@ namespace RoofTop.Web
             _container.RegisterType<IRealEstateAdService, RealEstateAdService>();
             _container.RegisterType<ICityService, CityService>();
             _container.RegisterType<IRealEstateImageService, RealEstateImageService>();
-            _container.RegisterType<IFileService, UserFileService>();
+            //_container.RegisterType<IFileService, UserFileService>();
+            _container.RegisterType<IFileService, AmazonS3FileService>();
             _container.RegisterType<ICurrentUserService, CurrentUserService>();
             _container.RegisterType<IMappingService, MappingService>( new PerRequestLifetimeManager());
             _container.RegisterInstance<HttpServerUtilityBase>( new HttpServerUtilityWrapper(HttpContext.Current.Server) );

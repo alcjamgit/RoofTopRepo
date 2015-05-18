@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace RoofTop.Infrastructure.BLL.ApplicationServices
     {
         private ICurrentUserService _currentUserService;
         const int BUFFER_SIZE = 65536; // 65536 = 64 Kilobytes
-        string AMAZON_S3_BUCKET_NAME = "";
+        string AMAZON_S3_BUCKET_NAME = "rooftopappbucket";
 
         public AmazonS3FileService(ICurrentUserService currentUserService)
         {
@@ -36,25 +37,31 @@ namespace RoofTop.Infrastructure.BLL.ApplicationServices
         /// <returns></returns>
         public virtual string UploadFile(Stream inputStream, string destinationPath, string fileName, int fileSize)
         {
+            var awsKey = ConfigurationManager.AppSettings["AWSAccessKey"];
+            var awsSectretKey = ConfigurationManager.AppSettings["AWSSecretKey"];
 
-            using (IAmazonS3 s3Client = new AmazonS3Client(RegionEndpoint.USWest2)) 
+            using (IAmazonS3 s3Client = new AmazonS3Client(awsKey, awsSectretKey, RegionEndpoint.USEast1)) 
             { 
                 //we don't need to create the folder inside the bucket because the concept of folder in amazon is a bit different
-                //http://stackoverflow.com/questions/7039771/upload-a-file-to-s3-buckets-folder-using-asp-net-sdk
-                var fileNameWithFolder = _currentUserService.UserID + "/" + fileName;
+
+                var standardFileName = Guid.NewGuid().ToString() + Path.GetExtension(fileName);
+                var fileNameWithFolder = _currentUserService.UserID + "/" + standardFileName;
                 // Setup request for putting an object in S3. 
                 PutObjectRequest request = new PutObjectRequest 
-                { 
+                {
                     BucketName = AMAZON_S3_BUCKET_NAME,
                     Key = fileNameWithFolder, 
-                    ContentBody = "Sample Content"
+                    InputStream = inputStream,
                 }; 
   
                 // Make service call and get back the response. 
-                PutObjectResponse response = s3Client.PutObject(request); 
+                PutObjectResponse response = s3Client.PutObject(request);
+
+                return standardFileName;
             }
 
-            return "file name here";
+            return string.Empty;
+            
         }
 
 
