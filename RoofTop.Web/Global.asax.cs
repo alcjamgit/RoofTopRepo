@@ -48,6 +48,8 @@ namespace RoofTop.Web
             }
 
             var ex = Server.GetLastError();
+
+            //Instantiate a new Error controller instance
             var controller = new RoofTop.Web.Controllers.ErrorController();
             var routeData = new RouteData();
             var action = "Index";
