@@ -29,22 +29,54 @@ namespace RoofTop.Web
         //Catch unhandled exceptions
         void Application_Error(Object sender, EventArgs e)
         {
-            var adminEmail = "james_alcaraz11@yahoo.com";
-            var exception = Server.GetLastError();
-            if (exception == null)
-                return;
-            var mail = new MailMessage { From = new MailAddress(adminEmail) };
-            mail.To.Add(new MailAddress(adminEmail));
-            mail.Subject = "Site Error at " + DateTime.Now;
-            mail.Body = "Error Description: " + exception.Message;
-            var server = new SmtpClient { Host = "smtp.mail.yahoo.com" };
-            server.Send(mail);
+            var httpContext = ((MvcApplication)sender).Context;
+            var currentController = " ";
+            var currentAction = " ";
+            var currentRouteData = RouteTable.Routes.GetRouteData(new HttpContextWrapper(httpContext));
 
-            // Clear the error
-            Server.ClearError();
+            if (currentRouteData != null)
+            {
+                if (currentRouteData.Values["controller"] != null && !String.IsNullOrEmpty(currentRouteData.Values["controller"].ToString()))
+                {
+                    currentController = currentRouteData.Values["controller"].ToString();
+                }
 
-            // Redirect to a landing page
-            //Response.Redirect("home/landing");
+                if (currentRouteData.Values["action"] != null && !String.IsNullOrEmpty(currentRouteData.Values["action"].ToString()))
+                {
+                    currentAction = currentRouteData.Values["action"].ToString();
+                }
+            }
+
+            var ex = Server.GetLastError();
+            var controller = new RoofTop.Web.Controllers.ErrorController();
+            var routeData = new RouteData();
+            var action = "Index";
+
+            if (ex is HttpException)
+            {
+                var httpEx = ex as HttpException;
+
+                switch (httpEx.GetHttpCode())
+                {
+                    case 404:
+                        action = "NotFound";
+                        break;
+
+                    // others if any
+                }
+            }
+
+            httpContext.ClearError();
+            httpContext.Response.Clear();
+            httpContext.Response.StatusCode = ex is HttpException ? ((HttpException)ex).GetHttpCode() : 500;
+            httpContext.Response.TrySkipIisCustomErrors = true;
+
+            routeData.Values["controller"] = "Error";
+            routeData.Values["action"] = action;
+
+            controller.ViewData.Model = new HandleErrorInfo(ex, currentController, currentAction);
+            ((IController)controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
+
         }
     }
 }
