@@ -13,5 +13,10 @@ namespace RoofTop.Web.Controllers
         {
             return View();
         }
+        // GET: Error
+        public ActionResult NotFound()
+        {
+            return View();
+        }
     }
 }
