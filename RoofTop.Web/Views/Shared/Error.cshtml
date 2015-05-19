@@ -7,3 +7,11 @@
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
+
+<span>Message:</span>
+
+@Html.DisplayFor(m => m.Exception.Message)
+
+<span>Stack Trace:</span>
+@Html.DisplayFor(m => m.Exception.StackTrace)
+
