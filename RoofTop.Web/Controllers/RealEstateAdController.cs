@@ -47,9 +47,9 @@ namespace RoofTop.Web.Controllers
             _server = server;
         }
 
-        public ActionResult Index(Guid userId)
+        public ActionResult Index()
         {
-            var model = _adSvc.Find(a => a.CreatedBy == userId.ToString());
+            var model = _adSvc.Find(a => a.CreatedBy == _curUserSvc.UserID);
             return View(model);
         }
 

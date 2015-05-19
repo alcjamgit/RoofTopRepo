@@ -110,7 +110,7 @@ namespace RoofTop.Test.Controllers
 
             var controller = new RealEstateAdController(adService.Object, cityService.Object,
                 imgService.Object, fileService.Object, curUserSvc.Object, mappingService.Object, server.Object);
-            var view = controller.Index(Guid.NewGuid()) as ViewResult;
+            var view = controller.Index() as ViewResult;
             Assert.IsNotNull(view);
         }
 
@@ -136,7 +136,7 @@ namespace RoofTop.Test.Controllers
 
             var controller = new RealEstateAdController(adService.Object, cityService.Object,
                 imgService.Object, fileService.Object, curUserSvc.Object, mappingService.Object, server.Object);
-            var view = controller.Index(Guid.NewGuid()) as ViewResult;
+            var view = controller.Index() as ViewResult;
             var resultModel = (IEnumerable<RealEstateAd>)view.ViewData.Model;
             Assert.IsNotNull(view);
             Assert.AreEqual(resultModel.Count(), ads.Count(), "Result model has incorrect count");
